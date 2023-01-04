@@ -31,7 +31,8 @@ def get_season_ratings(series_id, season):
 
 if __name__ == "__main__":
     series_id = sys.argv[1]
-    if not os.path.exists(os.getcwd() + series_id + ".json"):
+    p = os.getcwd() + "/" + series_id + ".json"
+    if not os.path.exists(p):
         seasons = []
         for season in range(1, get_n_of_seasons(series_id)+1):
             rat = get_season_ratings(series_id, season)
