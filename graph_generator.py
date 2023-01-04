@@ -1,25 +1,44 @@
 from PIL import Image
 import json
 import sys
+import math
+
+COLORS = [
+    (255, 0, 0),    # 0
+    (255, 0, 0),    # 1
+    (255, 0, 0),    # 2
+    (255, 0, 0),    # 3
+    (255, 69, 0),   # 4
+    (255, 140, 0),  # 5
+    (255, 215, 0),  # 6
+    (231, 255, 0),  # 7
+    (198, 255, 0),  # 8
+    (140, 255, 0),  # 9
+    (61, 255, 0)    # 10
+]
 
 block_w = 64
+
+def lerp(a, b, t):
+    return a * (1 - t) + b * t
+
+def smooth_noise(a, b, t, remap):
+    tt = remap(t)
+    return lerp(a, b, tt)
 
 def load_series(series_id):
     f = open(series_id + ".json", "r")
     return json.loads(f.read())
 
 def get_color(rating):
-    if rating < 5:
-        return (255, 0, 0)
-    if rating < 6:
-        return (252, 136, 3)
-    if rating < 7:
-        return (252, 186, 3)
-    if rating < 8:
-        return (244, 252, 3)
-    if rating < 9:
-        return (173, 252, 3)
-    return (65, 252, 3)
+    flr = math.floor(rating)
+    c_a = COLORS[flr]
+    c_b = COLORS[flr+1]
+    t = rating-flr
+    
+    r = int(lerp(c_a[0], c_b[0], t))
+    g = int(lerp(c_a[1], c_b[1], t))
+    return (r, g, 0)
     
 if __name__ == '__main__':
     series_id = sys.argv[1]
