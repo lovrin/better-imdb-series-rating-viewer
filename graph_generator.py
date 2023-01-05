@@ -62,5 +62,5 @@ if __name__ == '__main__':
             for y in range(0, block_w):
                 for x in range(0, block_w):
                     pixels[xx*block_w+x, yy*block_w+y] = color    
-            image_draw.text((xx*block_w+15, yy*block_w+20), str(rating), font=font, fill =(0, 0, 0))
+            image_draw.text((xx*block_w+15, yy*block_w+19), str(rating), font=font, fill =(0, 0, 0))
     image.show()
