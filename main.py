@@ -3,6 +3,12 @@ from selenium.webdriver.common.by import By
 import os
 import sys
 
+# get n of seasons
+# https://imdb-api.com/API/Title/{api_key}/{series_id}
+
+# get season episodes (with ratings)
+# https://imdb-api.com/API/SeasonEpisodes/{api_key}/{series_id}/{season_number}
+
 browser = webdriver.Chrome()
 
 def get_n_of_seasons(series_id):
