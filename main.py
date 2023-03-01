@@ -51,5 +51,5 @@ if __name__ == "__main__":
         f.write(to_save)
         f.close()
     else:
-        print("Serie already stored!")
+        print("Series already stored!")
 
